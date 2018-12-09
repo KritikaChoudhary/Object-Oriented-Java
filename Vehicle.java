@@ -1,60 +1,70 @@
-package first;
-import java.util.Scanner;
-public abstract class Vehicle 
-{
-	Vehicle()
-	{
-		yom=0;
-	}
-	 int yom;
-	 abstract void getData(int a);
-	 abstract void putData();
+import java.util.*;
+abstract class Vehicl {
+	int yom;
+	abstract void getData();
+	abstract void putData();
 }
-class tW extends Vehicle
+class TwoWheeler extends Vehicl
 {
-	void getData(int a)
+	Scanner sc=new Scanner(System.in);
+	String brand;
+	void getData()
 	{
-		System.out.println("twoWheeler class");
-		yom=a;
+		System.out.print("Enter year of manufacture:");
+		yom=sc.nextInt();
+		System.out.print("\nEnter brand:");
+		brand=sc.next();
+		putData();
 	}
 	void putData()
 	{
-		System.out.println("Year of manufacture of twowheeler:"+yom);
+		System.out.println("\nYear of manufacture:"+yom);
+		System.out.println("Brand: "+brand);
 	}
 }
-final class fW extends Vehicle
+final class FourWheeler extends Vehicl
 {
-	void getData(int a)
+	Scanner sc=new Scanner(System.in);
+	String brand;
+	void getData()
 	{
-		System.out.println("FourWheeler class");
-		yom=a;
+		System.out.print("Enter year of manufacture:");
+		yom=sc.nextInt();
+		putData();
 	}
 	void putData()
 	{
-		System.out.println("Year of manufacture of fourwheeler:"+yom);
+		System.out.println("\nYear of manufacture:"+yom);
 	}
 }
-class mtW extends tW
+class MyTwoWheeler extends TwoWheeler
 {
-	void getdata(int a)
+	Scanner sc=new Scanner(System.in);
+	String name;
+	MyTwoWheeler(int y)
 	{
-		super.getData(a);
+		System.out.println("\nEnter owner name:");
+		name=sc.next();
+		super.yom=y;
+	}
+	void putData()
+	{
+		System.out.println("Owner name:"+name);
+		System.out.println("Year of manufacture:"+yom);
 	}
 }
-class Main
+class Vehicle
 {
-	public static void main(String[] args) 
+	public static void main(String args[])
 	{
 		Scanner sc=new Scanner(System.in);
-		// TODO Auto-generated method stub
-		mtW m=new mtW();
-		System.out.println("Enter year of manufacture of twowheeler:");
-		m.getData(sc.nextInt());
-		m.putData();
-		fW f=new fW();
-		System.out.println("Enter year of manufacture of fourwheeler:");
-		f.getData(sc.nextInt());
-		f.putData();
+		TwoWheeler scooter=new TwoWheeler();
+		FourWheeler car=new FourWheeler();
+		scooter.getData();
+		car.getData();
+		System.out.print("Enter year of manufacture of MyTwoWheeler:");
+		int y=sc.nextInt();
+		MyTwoWheeler cycle=new MyTwoWheeler(y);
+		cycle.putData();
 	}
-
 }
